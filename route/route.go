@@ -2,14 +2,19 @@ package route
 
 import (
 	"fmt"
-	"transport/transport"
 )
 
-type Route struct {
-    vehicles []transport.Transport
+type Transport interface {
+	BoardPassengers(count int) string
+	DisembarkPassengers(count int) string
 }
 
-func (r *Route) AddVehicle(vehicle transport.Transport) {
+
+type Route struct {
+    vehicles []Transport
+}
+
+func (r *Route) AddVehicle(vehicle Transport) {
     r.vehicles = append(r.vehicles, vehicle)
 }
 
